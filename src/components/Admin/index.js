@@ -7,5 +7,3 @@ const Admin = () => (
 );
 
 export default Admin;
-
-import React from "react";
