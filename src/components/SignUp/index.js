@@ -7,6 +7,7 @@ const SignUpPage = () => (
   <div>
     <h1>SignUp</h1>
     <SignUpForm />
+    <SignInLink />
   </div>
 );
 
@@ -69,5 +70,11 @@ class SignUpForm extends Component {
     );
   }
 }
+
+const SignInLink = () => (
+  <p>
+    Have account? <Link to={ROUTES.SIGN_IN}>Sign In</Link>
+  </p>
+);
 
 export default SignUpPage;
