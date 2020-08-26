@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
+import { FirebaseContext } from "../Firebase";
 import * as ROUTES from "../../constants/routes";
 
 const SignUpPage = () => (
   <div>
     <h1>SignUp</h1>
-    <SignUpForm />
+    <FirebaseContext.Consumer>
+      {(firebase) => <SignUpForm firebase={firebase} />}
+    </FirebaseContext.Consumer>
     <SignInLink />
   </div>
 );
@@ -25,6 +28,21 @@ class SignUpForm extends Component {
 
     this.state = { ...INITIAL_STATE };
   }
+
+  onSubmit = (event) => {
+    const { username, email, passwordOne } = this.state;
+
+    this.props.firebase
+      .doCreateUserWithEmailAndPassword(email, passwordOne)
+      .then((authUser) => {
+        this.setState({ ...INITIAL_STATE });
+      })
+      .catch((error) => {
+        this.setState({ error });
+      });
+
+    event.preventDefault();
+  };
 
   onChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
