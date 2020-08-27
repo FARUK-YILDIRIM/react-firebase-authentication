@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-import { FirebaseContext } from "../Firebase";
+import { FirebaseContext, withFirebase } from "../Firebase";
 import * as ROUTES from "../../constants/routes";
 
 const SignUpPage = () => (
@@ -22,7 +22,7 @@ const INITIAL_STATE = {
   error: null,
 };
 
-class SignUpForm extends Component {
+class SignUpFormBase extends Component {
   constructor(props) {
     super(props);
 
@@ -95,6 +95,7 @@ class SignUpForm extends Component {
     );
   }
 }
+const SignUpForm = withFirebase(SignUpFormBase);
 
 const SignInLink = () => (
   <p>
