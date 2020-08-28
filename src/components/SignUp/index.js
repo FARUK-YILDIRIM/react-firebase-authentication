@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
+import { compose } from "recompose";
 
 import { FirebaseContext, withFirebase } from "../Firebase";
 import * as ROUTES from "../../constants/routes";
@@ -96,7 +97,7 @@ class SignUpFormBase extends Component {
     );
   }
 }
-const SignUpForm = withRouter(withFirebase(SignUpFormBase));
+const SignUpForm = compose(withRouter(withFirebase(SignUpFormBase)));
 
 const SignInLink = () => (
   <p>
